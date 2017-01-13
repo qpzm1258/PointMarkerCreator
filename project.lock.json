@@ -1,0 +1,126 @@
+{
+  "locked": false,
+  "version": 2,
+  "targets": {
+    ".NETFramework,Version=v4.5": {
+      "Microsoft.Office.Interop.Word/14.0.0": {
+        "type": "package",
+        "compile": {
+          "lib/net40/Microsoft.Office.Interop.Word.dll": {}
+        },
+        "runtime": {
+          "lib/net40/_._": {}
+        }
+      }
+    },
+    ".NETFramework,Version=v4.5/win10-x64": {
+      "Microsoft.Office.Interop.Word/14.0.0": {
+        "type": "package",
+        "compile": {
+          "lib/net40/Microsoft.Office.Interop.Word.dll": {}
+        },
+        "runtime": {
+          "lib/net40/_._": {}
+        }
+      }
+    },
+    ".NETFramework,Version=v4.5/win10-x86": {
+      "Microsoft.Office.Interop.Word/14.0.0": {
+        "type": "package",
+        "compile": {
+          "lib/net40/Microsoft.Office.Interop.Word.dll": {}
+        },
+        "runtime": {
+          "lib/net40/_._": {}
+        }
+      }
+    },
+    ".NETFramework,Version=v4.5/win7-x64": {
+      "Microsoft.Office.Interop.Word/14.0.0": {
+        "type": "package",
+        "compile": {
+          "lib/net40/Microsoft.Office.Interop.Word.dll": {}
+        },
+        "runtime": {
+          "lib/net40/_._": {}
+        }
+      }
+    },
+    ".NETFramework,Version=v4.5/win7-x86": {
+      "Microsoft.Office.Interop.Word/14.0.0": {
+        "type": "package",
+        "compile": {
+          "lib/net40/Microsoft.Office.Interop.Word.dll": {}
+        },
+        "runtime": {
+          "lib/net40/_._": {}
+        }
+      }
+    },
+    ".NETFramework,Version=v4.5/win8-x64": {
+      "Microsoft.Office.Interop.Word/14.0.0": {
+        "type": "package",
+        "compile": {
+          "lib/net40/Microsoft.Office.Interop.Word.dll": {}
+        },
+        "runtime": {
+          "lib/net40/_._": {}
+        }
+      }
+    },
+    ".NETFramework,Version=v4.5/win8-x86": {
+      "Microsoft.Office.Interop.Word/14.0.0": {
+        "type": "package",
+        "compile": {
+          "lib/net40/Microsoft.Office.Interop.Word.dll": {}
+        },
+        "runtime": {
+          "lib/net40/_._": {}
+        }
+      }
+    },
+    ".NETFramework,Version=v4.5/win81-x64": {
+      "Microsoft.Office.Interop.Word/14.0.0": {
+        "type": "package",
+        "compile": {
+          "lib/net40/Microsoft.Office.Interop.Word.dll": {}
+        },
+        "runtime": {
+          "lib/net40/_._": {}
+        }
+      }
+    },
+    ".NETFramework,Version=v4.5/win81-x86": {
+      "Microsoft.Office.Interop.Word/14.0.0": {
+        "type": "package",
+        "compile": {
+          "lib/net40/Microsoft.Office.Interop.Word.dll": {}
+        },
+        "runtime": {
+          "lib/net40/_._": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "Microsoft.Office.Interop.Word/14.0.0": {
+      "sha512": "Br8NjhgkTsDlGN2+SgRj4e/Be7HzAgwI08N687dW2tGwbmIDX3vQEWXuoutriM2l68nx4l7l5H8uK9Wli16tIg==",
+      "type": "package",
+      "path": "Microsoft.Office.Interop.Word/14.0.0",
+      "files": [
+        "Microsoft.Office.Interop.Word.14.0.0.nupkg.sha512",
+        "Microsoft.Office.Interop.Word.nuspec",
+        "lib/net40/Microsoft.Office.Interop.Word.dll",
+        "nuget.exe"
+      ]
+    }
+  },
+  "projectFileDependencyGroups": {
+    "": [],
+    ".NETFramework,Version=v4.5": [
+      "Microsoft.Office.Interop.Word >= 14.0.0"
+    ]
+  },
+  "tools": {},
+  "projectFileToolGroups": {}
+}

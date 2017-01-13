@@ -1,14 +1,13 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.IO;
-using System.Threading.Tasks;
+using System.Collections.Generic;
+using System.Text;
+using System.Linq;
 using Microsoft.Office.Interop.Word;
 
-namespace wordtest
+namespace ConsoleApplication
 {
-    class Program
+    public class Program
     {
         private static Dictionary<string, Range> m_RangeMap;
         private static Dictionary<string, InlineShape> m_InlineShapeMap;
@@ -20,10 +19,6 @@ namespace wordtest
                 m_RangeMap[bookmark].Font.Size = fontSize;
                 m_RangeMap[bookmark].Text = value;
             }
-        }
-
-        ~Program() {
-            killWinWordProcess();
         }
 
         public static void InsertPicture(ref _Document doc, string bookmark, string picturePath, float width, float hight)
@@ -92,8 +87,7 @@ namespace wordtest
                 }
                 catch (Exception ex)
                 {
-
-                    Console.WriteLine("Error input!");
+                    Console.WriteLine("Error input!"+ex.Message);
                 }
                 
                 Console.WriteLine();
@@ -167,7 +161,7 @@ namespace wordtest
 
                 //Save the document
                 object filename = path + "\\point\\point.docx";
-                document.SaveAs2(ref filename);
+                document.SaveAs(ref filename);
                 document.Close(ref missing, ref missing, ref missing);
                 document = null;
                 winword.Quit(ref missing, ref missing, ref missing);
@@ -182,7 +176,6 @@ namespace wordtest
             Console.WriteLine("Press any key to continue...");
             Console.ReadKey();
         }
-
         /*
          * Kill WinWord Process
          */
@@ -198,8 +191,8 @@ namespace wordtest
                 }
             }
         }
-
-        static void Main(string[] args)
+    
+        public static void Main(string[] args)
         {
             Console.WriteLine("This program base on .NET Framework 4.5 and Microsoft office 2010/2013/2016");
             killWinWordProcess();
