@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.IO;
+using System.Threading.Tasks;
 using Microsoft.Office.Interop.Word;
 
 namespace wordtest
@@ -19,6 +20,10 @@ namespace wordtest
                 m_RangeMap[bookmark].Font.Size = fontSize;
                 m_RangeMap[bookmark].Text = value;
             }
+        }
+
+        ~Program() {
+            killWinWordProcess();
         }
 
         public static void InsertPicture(ref _Document doc, string bookmark, string picturePath, float width, float hight)
@@ -45,32 +50,17 @@ namespace wordtest
             try
             {
                 string path = System.Environment.CurrentDirectory;
-                //Create an instance for word app
-                Microsoft.Office.Interop.Word._Application winword = new Microsoft.Office.Interop.Word.Application();
-                //Set animation status for word application
-                //winword.ShowAnimation = false;
-
-                //Set status for word application is to be visible or not.
-                winword.Visible = false;
-
-                //Create a missing variable for missing value
-                object missing = System.Reflection.Missing.Value;
-                object tempflie = path+"\\point\\template.dotx";
-                //Create a new document from document
-                Microsoft.Office.Interop.Word._Document document = winword.Documents.Add(tempflie, ref missing, ref missing, ref missing);
-                document.SpellingChecked = false;
-                document.ShowSpellingErrors = false;
                 m_RangeMap = new Dictionary<string, Range>();
                 m_InlineShapeMap = new Dictionary<string, InlineShape>();
                 Console.WriteLine("Environment Setting:");
 
-                string input;
-                do
-                {
-                    Console.WriteLine("[Debug Model]");
-                    Console.Write("Do you want the program work on debug model? y(es) or n(o)");
-                    input = Console.ReadLine().ToLower();  
-                } while (input != "y" && input != "n");
+                //string input;
+                //do
+                //{
+                //    Console.WriteLine("[Debug Model]");
+                //    Console.Write("Do you want the program work on debug model? y(es) or n(o)");
+                //    input = Console.ReadLine().ToLower();  
+                //} while (input != "y" && input != "n");
 
                 //winword.Visible = (input == "y");
 
@@ -88,9 +78,45 @@ namespace wordtest
                 Console.WriteLine("Document will be created into path: " + path + "\\point\\point.docx");
                 Console.WriteLine("Warning !!! Check if the document exist, it will be covered");
                 Console.WriteLine();
+                Console.WriteLine("[Scale Setting]");
+                Console.WriteLine();
+                int scale=0;
+                bool enterCheck = false;
+                do{
+                Console.WriteLine("Please input the scale:");
+                try
+                {
+                    scale = Convert.ToInt32(Console.ReadLine());
+                    enterCheck = true;
+                    Console.WriteLine("Scale is :"+scale);
+                }
+                catch (Exception ex)
+                {
+
+                    Console.WriteLine("Error input!");
+                }
+                
+                Console.WriteLine();
+                }while(!enterCheck);
+
                 Console.WriteLine("Please check your files in the right path and press any key to continue...");
                 Console.ReadKey();
+                
+                //Create an instance for word app
+                Microsoft.Office.Interop.Word._Application winword = new Microsoft.Office.Interop.Word.Application();
+                //Set animation status for word application
+                //winword.ShowAnimation = false;
 
+                //Set status for word application is to be visible or not.
+                winword.Visible = false;
+
+                //Create a missing variable for missing value
+                object missing = System.Reflection.Missing.Value;
+                object tempflie = path + "\\point\\template.dotx";
+                //Create a new document from document
+                Microsoft.Office.Interop.Word._Document document = winword.Documents.Add(tempflie, ref missing, ref missing, ref missing);
+                document.SpellingChecked = false;
+                document.ShowSpellingErrors = false;
                 //Init bookmarks map
                 foreach (Bookmark bookmark in document.Bookmarks)
                 {
@@ -112,6 +138,13 @@ namespace wordtest
                         SetText(ref document, "X", values[1]);
                         SetText(ref document, "Y", values[2]);
                         SetText(ref document, "H", values[3]);
+                        double x = Convert.ToDouble(values[1]);
+                        double y = Convert.ToDouble(values[2]);
+                        double picture_x = Math.Floor(x * 2 / scale) * scale / 2;
+                        double picture_y = Math.Floor(y * 2 / scale) * scale / 2;
+                        string picture_x_str = (Math.Round(picture_x*0.001,2)).ToString("0.00");
+                        string picture_y_str = (Math.Round(picture_y*0.001,2)).ToString("0.00");
+                        SetText(ref document, "ImageNo", picture_x_str+"-"+picture_y_str);
                         InsertPicture(ref document, "BigImage", path + "\\point\\imagedir\\big\\" + values[0] + ".jpg", 239F, 360F);
                         InsertPicture(ref document, "MiddleImage", path + "\\point\\imagedir\\middle\\" + values[0] + ".jpg", 194F, 274F);
                         InsertPicture(ref document, "SmallImage", path + "\\point\\imagedir\\small\\" + values[0] + ".jpg", 176F,193F);
