@@ -31,9 +31,9 @@ txt的格式为(每行一个点，[]表示必填参数，实际文件内无[]，
 ## 程序运行如下:
 
 [点名],[X],[Y],[H]  
-         .  
+&ensp;&emsp;&emsp;&emsp;.  
 [点名],[X],[Y],[H]  
-	.  
+&ensp;&emsp;&emsp;&emsp;.  
 
 ### 如果生成成功
 将显示:Document created successfully !
